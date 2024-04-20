@@ -1,0 +1,45 @@
+<%- include('parts/header.ejs') %>
+<%- include('parts/navbar.ejs') %>
+<div class="container pt-5">
+  <form action="/" method="get">
+    <div class="input-group mb-3">
+      <select class="form-select" aria-label="Default select example" name="category">
+        <option selected value="all">All</option>
+        <option value="shirts">Shirts</option>
+        <option value="T-shirts">T-shirts</option>
+      </select>
+      <button type="submit" class="btn btn-success">Filter</button>
+    </div>
+  </form>
+  <div class="row">
+    <% if (Products.length === 0) { %>
+      <div class="alert alert-danger" role="alert">There are no products.</div>
+    <% } else { %>
+      <% for (let product of Products) { %>
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3 my-3">
+          <div class="card">
+            <img class="card-img-top" src="<%= product.Image %>" alt="Product Image">
+            <div class="card-body">
+              <a href="/product/<%= product._id %>">
+                <h5 class="card-title"><%= product.name %></h5>
+              </a>
+              <p class="card-text">Price: <%= product.Price %></p>
+              <p class="card-text"><%= product.description %></p>
+              <form action="/cart" method="post">
+                <div class="mb-3">
+                  <label for="quantity" class="form-label">Quantity</label>
+                  <input type="number" name="quantity" class="form-control" id="quantity" value="<%= product.quantity %>">
+                </div>
+                <input type="hidden" name="Price" value="<%= product.Price %>" >
+                <input type="hidden" name="ProductId" value="<%= product._id %>">
+                <input type="hidden" name="name" value="<%= product.name %>">
+                <input type="submit" value="Add to Cart" class="btn btn-success">
+              </form>
+            </div>
+          </div>
+        </div>
+      <% } %>
+    <% } %>
+  </div>
+</div>
+<%- include('parts/footer.ejs') %>

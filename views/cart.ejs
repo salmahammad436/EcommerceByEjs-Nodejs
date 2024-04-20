@@ -1,0 +1,68 @@
+<%- include('parts/header.ejs') %>
+<nav class="navbar  navbar-expand-md bg-body-tertiary bg-dark border-bottom border-body m-auto" data-bs-theme="dark">
+    <div class="container">
+        <svg width="95" height="42" viewBox="0 0 101 42" fill="none" color="#fff" xmlns="http://www.w3.org/2000/svg" class="mt-xl h-[48px] w-[auto] text-highlights-primary md:pointer-events-auto md:h-[72px]">
+            
+        </svg>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/cart">Orders</a>
+                </li>
+            </ul>
+            <form action="/logout" method="post" class="f-right">
+                <button class="btn btn-outline-danger" type="submit">Logout</button>
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="container p-5 m-auto">
+    <% if(items.length == 0) { %>
+        <div class="alert alert-danger mt-5" role="alert"> There are no Products</div>
+    <% } else { %>
+      <div class="container">
+        <table class="table">
+            <thead class="text-capitalize px-2">
+            <tr>
+            <th class="px-2">No</th>
+            <th class="px-2">Name</th>
+            <th class="px-2">Price</th>
+            <th class="px-2">Quantity</th>
+            <th class="px-2">total Price</th>
+            </tr>
+            </thead>
+            <tbody>
+                <% for (let i = 0; i < items.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td class="text-capitalize px-2"><%= items[i].name %></td>
+                        <td class="text-capitalize px-2"><%= items[i].Price %></td>
+                        <td><%= items[i].quantity%></td>
+                            <form method="post">
+                                <td><input type="hidden" name="quantity" class="form-control" value="<%= items[i].quantity %>">
+                                <%= +items[i].Price * +items[i].quantity%></td>
+                               
+                                <td>
+                                  <input type="hidden" name="CartId" value="<%= items[i]._id %>">
+                                <input type="submit" value="save" class="btn btn-success m-2 p-3" formaction="/cart/save">
+                                <input type="submit" value="cancel" class="btn btn-danger p-3 m-2 cancel-btn" formaction="/cart/cancel">
+
+
+                              </td>
+                            </form>
+                        
+                    </tr>
+                <% } %>
+            </tbody>
+        </table></div>
+    <% } %>
+</div>
+
+<%- include('parts/footer.ejs') %>

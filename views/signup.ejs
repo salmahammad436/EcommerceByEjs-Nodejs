@@ -1,0 +1,28 @@
+<%- include('parts/header.ejs') %>
+<div class="container mt-5">
+ 
+<form method="post" action="/signup">
+
+    <div class="mb-3 w-50 m-auto">
+      <h1 class="m-auto pb-4">Sign up</h1>
+        <label for="exampleInputEmail1" class="form-label">UserName </label>
+        <input type="text" class="form-control " id="name" aria-describedby="emailHelp" placeholder="name"  name="name">
+      </div>
+    <div class="mb-3 w-50 m-auto">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email" name="email">
+    </div>
+    <div class="mb-3 w-50 m-auto">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="password" name="password">
+    </div>
+    <div class="mb-3 w-50 m-auto">
+        <label for="exampleInputPassword1" class="form-label">Confirm Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Confirm Password" name="Confirmpassword">
+      </div>
+      <div class="w-50 m-auto pt-4">
+    <button type="submit" class="btn btn-success ">Create Account</button>
+    <div>already have account? <a href="/login">Login</a></div></div></div>
+  </form><br>
+  </div>
+   <%- include('parts/footer.ejs') %>

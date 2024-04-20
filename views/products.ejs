@@ -1,0 +1,23 @@
+<%- include('parts/header.ejs') %>
+<%- include('parts/navbar.ejs') %>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col col-12 col-md-6">
+      <div class="card" style="width: 18rem;">
+        <img class="card-img-top" src="/<%= product.Image %>" style="font-size: large; font-weight: 600;">
+        <form action="/cart" class="m-auto" method="post">
+          <input type="number" name="amount" class="form-control">
+          <input type="submit" value="Add to Cart" class="btn btn-success">
+        </form>
+      </div>
+    </div>
+    <div class="col col-12 col-md-6">
+      <div class="card-body">
+        <h5 class="card-title"><%= product.name %></h5>
+        <p class="card-text"><%= product.Price %></p>
+        <p class="card-text"><%= product.description %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('parts/footer.ejs') %>
